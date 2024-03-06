@@ -1,0 +1,59 @@
+ /* Navbar styles */
+ .navbar {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin-left: 280px;
+    height: 50px;
+}
+
+.profile-icon {
+    cursor: pointer;
+}
+
+/* Profile card styles */
+#profileCard {
+    position: fixed;
+    top: 55px;
+    right: 20px; /* Adjust the right distance as needed */
+    width: 300px;
+    display: none;
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 5px;
+    z-index: 1001;
+    background-color: white;
+}
+
+.profile-card {
+    width: 100%; /* Make the card take full width */
+    height: auto;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+}
+
+.profile-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card .text-end {
+    position: relative;
+}
+
+.profile-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card .text-end {
+    position: relative;
+}
+
+.profile-card .text-end img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
