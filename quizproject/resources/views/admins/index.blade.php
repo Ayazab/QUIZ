@@ -31,13 +31,14 @@
 </style>
 
 <div class="container">
-    <h2>Admins</h2>
+    <h2>Admins List</h2>
     <table id="adminsTable" class="display">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>User Name</th>
+                <th>Email Id</th>
                 <!-- Add more columns as needed -->
             </tr>
         </thead>
@@ -45,7 +46,8 @@
             <!-- Loop through your admins data and populate the table -->
             @foreach($admins as $admin)
             <tr>
-                <td>{{ $admin->id }}</td>
+                <td>{{ $admin->firstname }}</td>
+                <td>{{ $admin->lastname }}</td>
                 <td>{{ $admin->username }}</td>
                 <td>{{ $admin->email_id }}</td>
                 <!-- Add more columns as needed -->

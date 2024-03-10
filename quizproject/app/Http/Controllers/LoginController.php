@@ -49,6 +49,15 @@ class LoginController extends Controller
                 // dd('if');
                 // Password is correct
                 Log::info('Password is correct');
+                if($role == 'teachers'){
+                    if ($user->is_approved) {
+                        $dashboard = 'teachers_dashboard';
+                        return Redirect::route($dashboard);
+                    } else {
+                        // Teacher is not approved
+                        return redirect()->back()->withInput()->withErrors(['login_error' => 'Your account is not approved.']);
+                    }
+                }
                 $dashboard = $role . '_dashboard';
                 // dd($dashboard);
                 return Redirect::route($dashboard);

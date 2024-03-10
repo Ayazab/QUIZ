@@ -55,5 +55,12 @@
     <script src="{{ asset('js/navbar.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 
+
+    <script>
+        $(document).ready(function () {
+            // Initialize DataTable
+            // $('#adminsTable').DataTable();
+        });
+    </script>
 </body>
 </html>

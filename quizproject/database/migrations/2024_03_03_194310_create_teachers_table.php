@@ -21,8 +21,9 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('email_id')->unique();
             $table->string('password');
-            $table->string('subject_names')->nullable();
+            $table->string('subject_name')->nullable();
             $table->string('profile_pic')->nullable();
+            $table->boolean('is_approved')->default(false); // Added is_approved column
             $table->timestamps();
         });
     }

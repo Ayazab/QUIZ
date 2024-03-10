@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Teacher;
 use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Support\Str;
 
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +15,8 @@ class RegisterController extends Controller
 {
     public function showRegistrationForm()
     {
-        return view('register');
+        $subjects = Subject::all();
+        return view('register', compact('subjects'));
     }
 
     public function register(Request $request)
@@ -27,9 +29,9 @@ class RegisterController extends Controller
         'email' => 'required|email|unique:' . $this->getTableName($request->input('role')) . ',email_id',
         'username' => 'required|string|unique:' . $this->getTableName($request->input('role')) . ',username',
         'password' => 'required|min:6',
-        'department' => ($request->input('role') == 'students') ? 'required|string' : '',
-        'subject' => ($request->input('role') == 'teachers') ? 'array' : '',
-        'subjects.*' => 'string',
+        // 'department' => ($request->input('role') == 'students') ? 'string' : '',
+        'subject' => ($request->input('role') == 'teachers') ? 'string' : '',
+        // 'subjects.*' => 'string',
     ]);
 
     // Validation for unique constraints
@@ -51,16 +53,25 @@ class RegisterController extends Controller
 
     $modelClass = $this->getClassName($request->input('role'));
 
+    // dd($request->toArray());
+
+    // dd($modelClass);
     $user = $modelClass::create([
         'firstname' => $request->input('firstname'),
         'lastname' => $request->input('lastname'),
         'email_id' => $request->input('email'),
         'username' => $request->input('username'),
         'password' => Hash::make($request->input('password')),
-        'class' => $request->input('department'),
-        'subject_names' => implode(',', $request->input('subjects'))
+        'subject_name' => $request->input('subject_name'),
     ]);
+    // dd($user->toArray());
 
+    // if ($modelClass == "App\Models\Teacher") {
+    //     $user->update([
+    //         'subject_name' => implode(',', $request->input('subjects')),
+    //     ]);
+    // }
+// dd($user);
     // Redirect to login page with success message
     return redirect()->route('login')->with('success', 'Registration successful. Please login.');
 }

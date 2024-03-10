@@ -134,7 +134,7 @@
                 </div>
 
                  <!-- Additional Fields based on Role -->
-        <div class="col-md-6" id="departmentField" style="display: none;">
+        {{-- <div class="col-md-6" id="departmentField" style="display: none;">
             <label for="department" class="form-label">Department</label>
             <select class="form-select" id="department" name="department">
                 <option value="computer">Computer</option>
@@ -142,9 +142,9 @@
                 <option value="electrical">Electrical</option>
                 <!-- Add more options as needed -->
             </select>
-        </div>
+        </div> --}}
 
-        <div class="col-md-6" id="subjectsField" style="display: none;">
+        {{-- <div class="col-md-6" id="subjectsField" style="display: none;">
             <label for="subjects" class="form-label mb-0">Subjects</label>
             <select class="form-select" id="subjects" name="subjects[]" multiple>
                 <option value="math">Math</option>
@@ -152,9 +152,18 @@
                 <option value="english">English</option>
                 <!-- Add more options as needed -->
             </select>
+        </div> --}}
+        <div class="col-md-6" id="subjectsField" style="display: none;">
+            <label for="subject_code" class="form-label">Subject</label>
+            <select class="form-select" id="subject_code" name="subject_name">
+                <option value="" selected>Select Subject</option> <!-- Placeholder option -->
+
+                <!-- Add options dynamically based on subjects in the database -->
+                @foreach($subjects as $subject)
+                    <option value="{{ $subject->sub_code }} - {{ $subject->sub_name }}">{{ $subject->sub_code }} - {{ $subject->sub_name }}</option>
+                @endforeach
+            </select>
         </div>
-
-
             </div>
 
             <button type="submit" class="btn btn-primary">Register</button>
@@ -184,14 +193,16 @@
     $(document).ready(function () {
         $('#role').change(function () {
             // Hide all additional fields initially
-            $('#departmentField, #subjectsField').hide();
+            $('#subjectsField').hide();
 
             // Show additional fields based on the selected role
-            if ($(this).val() === 'students') {
-                $('#departmentField').show();
-            } else if ($(this).val() === 'teachers') {
+            if ($(this).val() != 'admins') {
+                // $('#departmentField').show();
                 $('#subjectsField').show();
             }
+            // } else if ($(this).val() === 'teachers') {
+            //     $('#subjectsField').show();
+            // }
         });
 
 
